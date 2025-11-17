@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReBottle Art Project - Manchester Community Creative Reuse Initiative</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
+    color: #333;
+    line-height: 1.8;
+  }
+
+  header {
+    background: linear-gradient(135deg, #26c6da, #00acc1);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23ffffff"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23ffffff"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23ffffff"/></svg>') no-repeat bottom;
+    background-size: cover;
+    opacity: 0.3;
+  }
+
+  header h1 {
+    font-size: 64px;
+    margin: 0 0 15px 0;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 1;
+    animation: fadeInDown 1s ease-out;
+  }
+
+  header p {
+    font-size: 20px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+    opacity: 0.95;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+  }
+
+  h2 {
+    color: #00796b;
+    margin-bottom: 25px;
+    font-size: 36px;
+    border-bottom: 3px solid #26c6da;
+    padding-bottom: 10px;
+    display: inline-block;
+  }
+
+  .section {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 60px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  }
+
+  .section p {
+    margin-bottom: 20px;
+    font-size: 17px;
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #b2ebf2, #80deea);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 5px solid #00796b;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 25px;
+    margin-top: 30px;
+  }
+
+  .image-grid div {
+    background: linear-gradient(135deg, #b2ebf2, #80deea);
+    border-radius: 15px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #004d40;
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-grid div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="%23004d40" stroke-width="2" opacity="0.1"/></svg>') center/contain no-repeat;
+  }
+
+  .image-grid div:hover {
+    transform: scale(1.05);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-gap: 35px;
+    margin-top: 35px;
+  }
+
+  .team-member {
+    text-align: center;
+    background: linear-gradient(135deg, #b2dfdb, #80cbc4);
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team-member:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+  }
+
+  .team-member-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    background: linear-gradient(135deg, #004d40, #00796b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 25px;
+    margin: 30px 0;
+  }
+
+  .stat-box {
+    background: linear-gradient(135deg, #26c6da, #00acc1);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .stat-number {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    font-size: 16px;
+    opacity: 0.9;
+  }
+
+  .contact-box {
+    background: linear-gradient(135deg, #00796b, #004d40);
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  .contact-box h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .contact-info {
+    font-size: 20px;
+    margin: 15px 0;
+  }
+
+  .contact-info a {
+    color: #80deea;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  .contact-info a:hover {
+    color: #b2ebf2;
+  }
+
+  a.button {
+    display: inline-block;
+    background: linear-gradient(135deg, #00796b, #004d40);
+    color: white;
+    text-decoration: none;
+    padding: 18px 35px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  a.button:hover {
+    background: linear-gradient(135deg, #004d40, #00251a);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  }
+
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+    margin: 30px 0;
+  }
+
+  .timeline-item {
+    padding: 20px 30px;
+    background: #e0f2f1;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 5px solid #26c6da;
+  }
+
+  .timeline-item h4 {
+    color: #00796b;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .participants-list {
+    background: #f1f8f6;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 25px 0;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 2px solid #b2dfdb;
+  }
+
+  .participants-list h3 {
+    color: #00796b;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .participant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+  }
+
+  .participant-item {
+    background: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border-left: 3px solid #26c6da;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+  }
+
+  .participant-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  }
+
+  .participant-name {
+    font-weight: bold;
+    color: #00796b;
+    font-size: 16px;
+  }
+
+  .participant-org {
+    font-size: 14px;
+    color: #555;
+    margin-top: 4px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #00796b, #004d40);
+    color: white;
+    margin-top: 50px;
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.2);
+  }
+
+  footer p {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+
+  .disclaimer {
+    font-size: 15px;
+    color: #555;
+    margin-top: 30px;
+    line-height: 1.8;
+    padding: 25px;
+    background: #f5f5f5;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 42px;
+    }
+    
+    .section {
+      padding: 35px 30px;
+    }
+    
+    h2 {
+      font-size: 28px;
+    }
+
+    .participant-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌿 ReBottle Art Project 2025 🌿</h1>
+  <p>Transforming Glass Waste into Creative Masterpieces</p>
+</header>
+
+<div class="container">
+
+  <div class="section">
+    <h2>📖 About MCCRI</h2>
+    <p>The <strong>Manchester Community Creative Reuse Initiative (MCCRI)</strong> is a registered cultural and environmental organisation dedicated to promoting sustainability and creative reuse of materials. Founded in 2014 in Manchester's vibrant Northern Quarter, MCCRI has become a cornerstone of the local environmental movement.</p>
+    
+    <p>We work closely with schools, universities, community centres, and artists to turn recyclable waste into impactful public artworks. Our mission goes beyond recycling—we aim to inspire communities to see beauty and potential in what others might discard.</p>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number">11</div>
+        <div class="stat-label">Years Active</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Community Partners</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">15,000+</div>
+        <div class="stat-label">Items Repurposed</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>🏆 Recognition & Support:</strong> Our programmes have been supported by the Greater Manchester Green Fund, UK Youth Environmental Alliance, Arts Council England, and numerous local businesses committed to sustainability.
+    </div>
+
+    <p>MCCRI hosts regular workshops, exhibitions, and training sessions that combine environmental education with hands-on creativity. We believe that art and sustainability are natural partners in creating a better future for our communities.</p>
+
+    <div class="image-grid">
+      <div>🎨<br>Community Workshop<br>Interactive Sessions</div>
+      <div>👥<br>Volunteer Team<br>United for Change</div>
+      <div>🖼️<br>Art Exhibition<br>Public Displays</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>👕 ReWear Collection Drive - February 2025</h2>
+    <p>In <strong>February 2025</strong>, MCCRI successfully launched the <strong>ReWear Collection Drive</strong>, a month-long initiative focused on collecting and repurposing old clothing items. This programme aimed to reduce textile waste while providing materials for fashion upcycling workshops and community textile art projects.</p>
+
+    <div class="highlight-box">
+      <strong>📅 Event Duration:</strong> February 1-28, 2025<br>
+      <strong>📦 Items Collected:</strong> 3,847 pieces of clothing<br>
+      <strong>👥 Total Participants:</strong> 284 individuals from across Greater Manchester<br>
+      <strong>🏢 Partner Organizations:</strong> 28 schools, universities, and companies
+    </div>
+
+    <p>Participants from schools, universities, and businesses across the region contributed unwanted clothing items including shirts, trousers, dresses, jackets, and accessories. These items were sorted, with wearable pieces donated to local charities and the remainder transformed into textile art, quilts, bags, and other creative projects.</p>
+
+    <p>The ReWear Collection Drive demonstrated the power of community collaboration in addressing textile waste, one of the fastest-growing environmental challenges. We are incredibly proud of everyone who participated!</p>
+
+    <div class="participants-list">
+      <h3>🌟 February 2025 ReWear Participants 🌟</h3>
+      <div class="participant-grid">
+        <div class="participant-item">
+          <div class="participant-name">Sarah Thompson</div>
+          <div class="participant-org">University of Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">James Wilson</div>
+          <div class="participant-org">Manchester Metropolitan University</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Emily Chen</div>
+          <div class="participant-org">Salford Royal NHS Foundation Trust</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Mohammed Hassan</div>
+          <div class="participant-org">BBC Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Lisa Anderson</div>
+          <div class="participant-org">Deloitte Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">David Roberts</div>
+          <div class="participant-org">Manchester Grammar School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Priya Patel</div>
+          <div class="participant-org">Royal Bank of Scotland</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Thomas Murphy</div>
+          <div class="participant-org">Manchester City Council</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Sophie Williams</div>
+          <div class="participant-org">Withington Girls' School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Alexander Green</div>
+          <div class="participant-org">Barclays Bank</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Jessica Martinez</div>
+          <div class="participant-org">University of Salford</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Robert Taylor</div>
+          <div class="participant-org">PwC Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Amelia Brown</div>
+          <div class="participant-org">Manchester High School for Girls</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Daniel Lee</div>
+          <div class="participant-org">Co-operative Group</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Hannah Davies</div>
+          <div class="participant-org">Bolton School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Christopher Evans</div>
+          <div class="participant-org">KPMG Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Olivia Jackson</div>
+          <div class="participant-org">Altrincham Grammar School for Girls</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Matthew Wright</div>
+          <div class="participant-org">Manchester Airport Group</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Grace Robinson</div>
+          <div class="participant-org">Royal Northern College of Music</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Benjamin Clark</div>
+          <div class="participant-org">AstraZeneca Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Charlotte White</div>
+          <div class="participant-org">Cheadle Hulme School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Joshua Turner</div>
+          <div class="participant-org">Lloyds Banking Group</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Emma Harris</div>
+          <div class="participant-org">Chetham's School of Music</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">William Scott</div>
+          <div class="participant-org">Bruntwood</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Mia Johnson</div>
+          <div class="participant-org">Sale Grammar School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Ryan Mitchell</div>
+          <div class="participant-org">Siemens Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Kevin Meng</div>
+          <div class="participant-org">Ruthin School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Isabella Walker</div>
+          <div class="participant-org">Loreto College</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Nathan Phillips</div>
+          <div class="participant-org">Fujitsu UK</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Ava Campbell</div>
+          <div class="participant-org">Bury Grammar School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">George Edwards</div>
+          <div class="participant-org">Autotrader UK</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Ella Thomas</div>
+          <div class="participant-org">Stockport Grammar School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Jack Collins</div>
+          <div class="participant-org">BT Group Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Lily Stewart</div>
+          <div class="participant-org">Bolton School Girls' Division</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Harry Morris</div>
+          <div class="participant-org">Trafford Council</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Poppy Rogers</div>
+          <div class="participant-org">Whalley Range 11-18 High School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Oscar Cooper</div>
+          <div class="participant-org">The Christie NHS Foundation Trust</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Ruby Bailey</div>
+          <div class="participant-org">Altrincham Grammar School for Boys</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Lucas Richardson</div>
+          <div class="participant-org">Manchester University NHS Foundation Trust</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Freya Bell</div>
+          <div class="participant-org">St Bede's College</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Leo Hughes</div>
+          <div class="participant-org">Kellogg's Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Daisy Ward</div>
+          <div class="participant-org">Xaverian College</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Adam Foster</div>
+          <div class="participant-org">Bentley Motors Manchester</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Zoe Parker</div>
+          <div class="participant-org">Manchester Academy</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Samuel Price</div>
+          <div class="participant-org">DHL Supply Chain UK</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Maya Russell</div>
+          <div class="participant-org">The Manchester College</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Ethan Griffin</div>
+          <div class="participant-org">Adidas UK</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Scarlett Brooks</div>
+          <div class="participant-org">Parrs Wood High School</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Luke Watson</div>
+          <div class="participant-org">Rolls-Royce</div>
+        </div>
+        <div class="participant-item">
+          <div class="participant-name">Chloe Butler</div>
+          <div class="participant-org">Burnage Academy for Boys</div>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 20px; font-style: italic; color: #555;">...and 234 more dedicated participants!</p>
+    </div>
+
+    <div class="image-grid">
+      <div>👕<br>Clothing Collection<br>Community Drops</div>
+      <div>♻️<br>Sorting Process<br>Quality Check</div>
+      <div>🎨<br>Textile Upcycling<br>Creative Reuse</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>♻️ ReBottle Art Project Overview</h2>
+    <p>The <strong>ReBottle Art Project</strong> is our flagship annual initiative that brings together creativity, community, and environmental consciousness. This year's project runs from <b>November 6, 2025 to December 6, 2025</b>.</p>
+
+    <div class="highlight-box">
+      <strong>🎯 Mission Statement:</strong> To encourage the collection and artistic reuse of glass bottles, transforming everyday waste into extraordinary art while raising awareness about recycling and sustainability.
+    </div>
+
+    <p>Participants from all backgrounds are invited to gather glass bottles of all shapes, sizes, and colours. These bottles are then cleaned, sorted by our dedicated team, and transformed into stunning artworks including large-scale installations, intricate mosaics, decorative lamps, garden sculptures, and functional art pieces.</p>
+
+    <p>Each year, the project attracts <strong>over 600 participants</strong> from across Greater Manchester and beyond. The journey from collection to creation is collaborative, educational, and deeply rewarding.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Phase 1: Collection (Nov 6-20)</h4>
+        <p>Community members collect and submit glass bottles to our designated collection points across Manchester.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 2: Sorting & Planning (Nov 21-25)</h4>
+        <p>Our team sorts bottles by colour, size, and condition. Artists begin conceptualizing their projects.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 3: Creation (Nov 26-Dec 4)</h4>
+        <p>Workshops and creation sessions where participants work alongside professional artists to build artworks.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 4: Exhibition (Dec 5-6)</h4>
+        <p>The grand finale! All artworks are displayed at the annual "Manchester Green Creativity Exhibition" at Manchester Central.</p>
+      </div>
+    </div>
+
+    <div class="image-grid">
+      <div>🍾<br>Glass Bottles<br>Collection Drive</div>
+      <div>📦<br>Sorting Day<br>Organization</div>
+      <div>✨<br>Art Creation<br>Transformation</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎁 Reward Scheme & Recognition</h2>
+    <p>We believe in recognizing and rewarding community contribution. Participants who actively engage in MCCRI programmes will receive meaningful recognition for their efforts.</p>
+
+    <div class="highlight-box">
+      <strong>💷 Environmental Contribution Grant:</strong> Participants submitting at least 10 recyclable glass bottles (or equivalent materials in other programmes) will receive a <b>£5 Environmental Contribution Grant</b> as a token of appreciation for their commitment to sustainability.
+    </div>
+
+    <div class="highlight-box">
+      <strong>📜 Volunteer Certificate - Three-Time Participation Required:</strong> To receive an official <b>MCCRI Volunteer Certificate</b>, participants must complete <b>THREE separate MCCRI programmes or events</b>. This certificate recognizes sustaine
